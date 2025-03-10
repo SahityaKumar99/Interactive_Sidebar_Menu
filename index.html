@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Sidebar Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        .sidebar {
+            transition: width 0.3s ease-in-out;
+        }
+        .sidebar-collapsed {
+            width: 64px;
+        }
+        .sidebar-expanded {
+            width: 256px;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-blue-200 to-purple-300 min-h-screen flex">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar sidebar-expanded bg-blue-900 text-white min-h-screen p-5 space-y-4 shadow-lg">
+            <button onclick="toggleSidebar()" class="mb-4 text-white text-xl focus:outline-none"><i class="fas fa-bars"></i></button>
+            <nav>
+                <a href="#section1" class="block py-3 px-5 rounded hover:bg-blue-700 transition flex items-center"><i class="fas fa-home mr-2"></i> Section 1</a>
+                <a href="#section2" class="block py-3 px-5 rounded hover:bg-blue-700 transition flex items-center"><i class="fas fa-info-circle mr-2"></i> Section 2</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <header class="bg-white shadow-lg p-4 mb-6 flex justify-between rounded-lg backdrop-blur-md">
+                <h1 class="text-2xl font-bold text-blue-900">Interactive Navbar</h1>
+                <button onclick="toggleSidebar()" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-5 py-2 rounded-lg shadow-md hover:scale-105 transition">Toggle Sidebar</button>
+            </header>
+            <section id="section1" class="mb-10 p-8 bg-white shadow-lg rounded-lg fade-in">
+                <h2 class="text-3xl font-semibold mb-4 text-blue-900">Section 1</h2>
+                <p class="text-gray-700">This is the first section with enhanced styling and readability.</p>
+            </section>
+            <section id="section2" class="p-8 bg-white shadow-lg rounded-lg fade-in">
+                <h2 class="text-3xl font-semibold mb-4 text-blue-900">Section 2</h2>
+                <p class="text-gray-700">This is the second section with improved aesthetics.</p>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            let sidebar = document.getElementById("sidebar");
+            if (sidebar.classList.contains("sidebar-collapsed")) {
+                sidebar.classList.remove("sidebar-collapsed");
+                sidebar.classList.add("sidebar-expanded");
+            } else {
+                sidebar.classList.remove("sidebar-expanded");
+                sidebar.classList.add("sidebar-collapsed");
+            }
+        }
+    </script>
+</body>
+</html>
